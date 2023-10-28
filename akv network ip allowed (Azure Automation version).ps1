@@ -1,6 +1,8 @@
 ﻿## using PowerShell Module 
 ## Install-Module -Name Az.KeyVault -RequiredVersion 4.10.0
 ### need to add this managed identity as "Key Vault Contributor" role at Azure Key Vault level ### 
+### this cod will update IPs in Dataverse environment in Asia, for other please see https://learn.microsoft.com/en-us/connectors/common/outbound-ip-addresses#power-platform
+### and then modified or add variables at line 41 and 42 and sum up in line 83
 
 $kvname = Get-AutomationVariable -Name 'kvname'
 $RG = Get-AutomationVariable -Name 'resourceGroup'
@@ -34,6 +36,8 @@ catch {
     exit
 }
 
+### For this case, I've do dataverse environment in Asia so I've got 2 variables below
+### For other's region, please see https://learn.microsoft.com/en-us/connectors/common/outbound-ip-addresses#power-platform
 $IPRangesEa = $ip_ranges.values | Where-Object {$_.name -eq "AzureConnectors.EastAsia"} | Select-Object -ExpandProperty properties | Select-Object -ExpandProperty addressPrefixes
 $IPRangesSea = $ip_ranges.values | Where-Object {$_.name -eq "AzureConnectors.SouthEastAsia"} | Select-Object -ExpandProperty properties | Select-Object -ExpandProperty addressPrefixes
 
