@@ -1,5 +1,6 @@
 ﻿## using PowerShell Module 
 ## Install-Module -Name Az.KeyVault -RequiredVersion 4.10.0
+## You can test Az.KeyVault update version as well if you wish
 
 $kvname = "powerautomatetest-champ"
 $RG = "PowerPlatform"
