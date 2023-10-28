@@ -3,7 +3,7 @@
 ## You can test Az.KeyVault update version as well if you wish
 ### this script will update IPs in Dataverse environment in Asia (AzureConnectors.EastAsia, AzureConnectors.SouthEastAsia) 
 ### for other please see https://learn.microsoft.com/en-us/connectors/common/outbound-ip-addresses#power-platform
-### and then modified or add variables at line 42 and 43 and sum up in line 84
+### and then modified or add variables at line 49 and 50 and sum up in line 95
 
 $kvname = "powerautomatetest-champ"
 $RG = "PowerPlatform"
@@ -44,6 +44,8 @@ catch {
     exit
 }
 
+### For this case, I've do dataverse environment in Asia so I've got 2 variables below
+### For other's region, please see https://learn.microsoft.com/en-us/connectors/common/outbound-ip-addresses#power-platform
 $IPRangesEa = $ip_ranges.values | Where-Object {$_.name -eq "AzureConnectors.EastAsia"} | Select-Object -ExpandProperty properties | Select-Object -ExpandProperty addressPrefixes
 $IPRangesSea = $ip_ranges.values | Where-Object {$_.name -eq "AzureConnectors.SouthEastAsia"} | Select-Object -ExpandProperty properties | Select-Object -ExpandProperty addressPrefixes
 
